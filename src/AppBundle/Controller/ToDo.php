@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+
 class ToDo extends Controller
 {
     /**
@@ -14,6 +15,7 @@ class ToDo extends Controller
      */
     public function createList()
     {
+        $pagetitle = "To Do List";
 
         $todolist = array(
             1 => array('title' => 'test'),
@@ -22,7 +24,8 @@ class ToDo extends Controller
 
 
         return $this->render('todolist.html.twig', array(
-            'todolist' => $todolist,
+            'pagetitle' => $pagetitle,
+            'todolist'  => $todolist,
         ));
     }
 }

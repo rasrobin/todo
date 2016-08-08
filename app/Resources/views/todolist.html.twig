@@ -1,11 +1,15 @@
 {% extends '::base.html.twig' %}
 
-{% block body -%}
-<h1>To Do list</h1>
+{% block title -%}{{ pagetitle }}{% endblock %}
 
+{% block body -%}
 <div class="container">
     <div class="row">
-        <ul class="col-xl-12">
+        <h1>{{ pagetitle }}</h1>
+    </div>
+
+    <div class="row">
+        <ul class="col-xs-12">
         {% for item in todolist %}
 
             <li>{{ item.title }}</li>
@@ -23,5 +27,4 @@
 
 {% block js -%}
     <link rel="stylesheet" href="{{ asset('js/bootstrap.min.js') }}" />
-    <link rel="stylesheet" href="{{ asset('js/jquery.min.js') }}" />
 {% endblock %}
