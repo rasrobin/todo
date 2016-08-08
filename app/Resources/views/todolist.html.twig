@@ -3,11 +3,25 @@
 {% block body -%}
 <h1>To Do list</h1>
 
-<div>
-    <ul>
-    {% for item in todolist %}
-        <li>{{ item.title }}</li>
-    {% endfor %}
-    </ul>
+<div class="container">
+    <div class="row">
+        <ul class="col-xl-12">
+        {% for item in todolist %}
+
+            <li>{{ item.title }}</li>
+
+        {% endfor %}
+        </ul>
+    </div>
 </div>
+{% endblock %}
+
+
+{% block css -%}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+{% endblock %}
+
+{% block js -%}
+    <link rel="stylesheet" href="{{ asset('js/bootstrap.min.js') }}" />
+    <link rel="stylesheet" href="{{ asset('js/jquery.min.js') }}" />
 {% endblock %}
