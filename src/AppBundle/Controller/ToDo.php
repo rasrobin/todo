@@ -18,8 +18,8 @@ class ToDo extends Controller
         $pagetitle = "To Do List";
 
         $todolist = array(
-            1 => array('title' => 'test'),
-            2 => array('title' => 'ookeentest'),
+            1 => array('id' => 1, 'title' => 'test'),
+            2 => array('id' => 2, 'title' => 'ookeentest'),
         );
 
 

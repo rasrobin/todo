@@ -9,10 +9,14 @@
     </div>
 
     <div class="row">
-        <ul class="col-xs-12">
+        <ul class="col-xs-12 col-md-6 list-group" id="todolist">
         {% for item in todolist %}
 
-            <li>{{ item.title }}</li>
+            <li class="list-group-item" id="item{{ item.id }}">
+                <span class="js-del pull-right">X</span>
+                <span class="js-edit pull-right">edit</span>
+                {{ item.title }}
+            </li>
 
         {% endfor %}
         </ul>
@@ -22,7 +26,8 @@
 
 
 {% block css -%}
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}" />
 {% endblock %}
 
 {% block js -%}
