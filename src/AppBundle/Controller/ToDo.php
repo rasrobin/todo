@@ -5,6 +5,8 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 
+use AppBundle\Entity\ToDoList;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 
@@ -13,19 +15,22 @@ class ToDo extends Controller
     /**
      * @Route("/todo")
      */
-    public function createList()
+    public function showList()
     {
-        $pagetitle = "To Do List";
+        $listId     = 1;
 
-        $todolist = array(
-            1 => array('id' => 1, 'title' => 'test'),
-            2 => array('id' => 2, 'title' => 'ookeentest'),
-        );
+        $list = $this->getDoctrine()
+            ->getRepository('AppBundle:ToDoList')
+            ->find($listId);
 
+        if (!$list) {
+            throw $this->createNotFoundException(
+                'Geen To Do List gevonden met ID '.$listId
+            );
+        }
 
         return $this->render('todolist.html.twig', array(
-            'pagetitle' => $pagetitle,
-            'todolist'  => $todolist,
+            'list'      => $list,
         ));
     }
 }
