@@ -13,17 +13,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class ToDo extends Controller
 {
     /**
-     * @Route("/todo")
+     * @Route("/todo/list/{listId}")
      */
-    public function showList()
+    public function showList($listId)
     {
-        $listId     = 1;
-
         $list = $this->getDoctrine()
             ->getRepository('AppBundle:ToDoList')
             ->find($listId);
 
         if (!$list) {
+            //voor consumenten mooier afhandelen dan dit:
             throw $this->createNotFoundException(
                 'Geen To Do List gevonden met ID '.$listId
             );
@@ -47,8 +46,9 @@ class ToDo extends Controller
             ->find($id);
 
         if (!$item) {
+            //voor consumenten mooier afhandelen dan dit:
             throw $this->createNotFoundException(
-                'Geen item gevonden met ID '.$id
+                'Geen item gevonden met ID ' . $id
             );
         }
 
