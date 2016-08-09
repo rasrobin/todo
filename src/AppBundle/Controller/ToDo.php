@@ -20,7 +20,7 @@ class ToDo extends Controller
     /**
      * @Route("/todo/list/{listId}")
      */
-    public function showList($listId, Request $request)
+    public function showList($listId = 1, Request $request)
     {
         // array voor meldingen aanmaken
         $msgs = array();
@@ -40,7 +40,7 @@ class ToDo extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
-            
+
             $list = $em->getReference('AppBundle\Entity\ToDoList', $listId);
             $item = $form->getData();
             $item->setList($list);
@@ -95,6 +95,6 @@ class ToDo extends Controller
         $em->remove($item);
         $em->flush();
 
-        return $this->showList();
+        return $this->redirect('http://todo/web/app_dev.php/todo/list/1');
     }
 }
