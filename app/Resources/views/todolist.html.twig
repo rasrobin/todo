@@ -8,6 +8,18 @@
         <h1>{{ list.getName() }}</h1>
     </div>
 
+    {% if msgs is not empty %}
+    <div class="row">
+        <div class="alert alert-info col-xs-12 col-md-6" role="alert">
+            <ul>
+                {% for msg in msgs %}
+                    <li>{{ msg }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+
     <div class="row">
         {% if list.getItems() is not empty %}
         <ul class="col-xs-12 col-md-6 list-group" id="todolist">
@@ -21,11 +33,24 @@
 
             {% endfor %}
         {% else %}
-            <p>Deze lijst is leeg of bestaat niet</p>
+            <div class="alert alert-info col-xs-12 col-md-6" role="alert">
+                <ul><li>Deze lijst is leeg of bestaat niet</li></ul>
+            </div>
         {% endif %}
         </ul>
     </div>
 </div>
+
+<div class="container">
+    <div class="row">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+</div>
+
+
+
 {% endblock %}
 
 
