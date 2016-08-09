@@ -22,6 +22,7 @@ class ToDo extends Controller
      */
     public function showList($listId, Request $request)
     {
+        // array voor meldingen aanmaken
         $msgs = array();
 
         //formulier maken
@@ -38,12 +39,16 @@ class ToDo extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $item = $form->getData();
-
             $em = $this->getDoctrine()->getManager();
+            
+            $list = $em->getReference('AppBundle\Entity\ToDoList', $listId);
+            $item = $form->getData();
+            $item->setList($list);
+
             $em->persist($item);
             $em->flush();
 
+            //melding toevoegen
             $msgs[] = "Item toegevoegd";
         }
 
