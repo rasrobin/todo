@@ -31,6 +31,30 @@ class ToDo extends Controller
 
         return $this->render('todolist.html.twig', array(
             'list'      => $list,
+            //lelijke manier om toch maar even verder te gaan
+            'baseurl'   => 'http://todo/web/app_dev.php/todo/'
         ));
+    }
+
+    /**
+     * @Route("/todo/action/delete/{id}")
+     */
+    public function deleteListItem($id)
+    {
+        $em     = $this->getDoctrine()->getManager();
+        $item   = $this->getDoctrine()
+            ->getRepository('AppBundle:Item')
+            ->find($id);
+
+        if (!$item) {
+            throw $this->createNotFoundException(
+                'Geen item gevonden met ID '.$id
+            );
+        }
+
+        $em->remove($item);
+        $em->flush();
+
+        return $this->showList();
     }
 }
